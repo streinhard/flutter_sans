@@ -1,0 +1,39 @@
+name: flutter_sans
+description: Flutter App using Open Sans.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    # Official Google Font Open Sans has issues with soft-hypens:
+    # https://github.com/google/fonts/issues/2460
+    - family: OpenSansGoogle
+      fonts:
+        - asset: assets/GoogleFonts/OpenSans-Regular.ttf
+        - asset: assets/GoogleFonts/OpenSans-Bold.ttf
+        - asset: assets/GoogleFonts/OpenSans-SemiBold.ttf
+    # This version of Open Sans was built manually from the GitHub repo:
+    # https://github.com/googlefonts/opensans
+    # I updated the requirements.txt file and ran `./build.sh``
+    # Et voila, it works for hyphens (U+00AD, U+2010) and fractional glyphs (⅝, ⅗ etc.)!
+    - family: OpenSansCustom
+      fonts:
+        - asset: assets/CustomFonts/OpenSans-Regular.ttf
+        - asset: assets/CustomFonts/OpenSans-Bold.ttf
+        - asset: assets/CustomFonts/OpenSans-SemiBold.ttf
