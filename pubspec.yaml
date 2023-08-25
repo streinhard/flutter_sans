@@ -1,5 +1,5 @@
 name: flutter_sans
-description: Flutter App using Open Sans.
+description: A simple Flutter App using Open Sans.
 publish_to: "none"
 
 version: 1.0.0+1
@@ -21,19 +21,16 @@ flutter:
   uses-material-design: true
 
   fonts:
-    # Official Google Font Open Sans has issues with soft-hypens:
+    # Official Google Font Open Sans shows U+2010 way too low (looks similar to underscore _):
     # https://github.com/google/fonts/issues/2460
-    - family: OpenSansGoogle
+    - family: OpenSansGoogleFonts
       fonts:
         - asset: assets/GoogleFonts/OpenSans-Regular.ttf
         - asset: assets/GoogleFonts/OpenSans-Bold.ttf
-        - asset: assets/GoogleFonts/OpenSans-SemiBold.ttf
     # This version of Open Sans was built manually from the GitHub repo:
     # https://github.com/googlefonts/opensans
-    # I updated the requirements.txt file and ran `./build.sh``
-    # Et voila, it works for hyphens (U+00AD, U+2010) and fractional glyphs (⅝, ⅗ etc.)!
-    - family: OpenSansCustom
+    # The problem with U+2010 seems to be fixed here:
+    - family: OpenSansGithub
       fonts:
-        - asset: assets/CustomFonts/OpenSans-Regular.ttf
-        - asset: assets/CustomFonts/OpenSans-Bold.ttf
-        - asset: assets/CustomFonts/OpenSans-SemiBold.ttf
+        - asset: assets/GitHub/OpenSans-Regular.ttf
+        - asset: assets/GitHub/OpenSans-Bold.ttf

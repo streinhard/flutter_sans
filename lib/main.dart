@@ -11,54 +11,67 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Open Sans Demo',
+      title: 'Open Sans App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
-      home: const TextPage(),
+      debugShowCheckedModeBanner: false,
+      home: const OpenSansPage(),
     );
   }
 }
 
-class TextPage extends StatelessWidget {
-  const TextPage({super.key});
+class OpenSansPage extends StatefulWidget {
+  const OpenSansPage({super.key});
+
+  @override
+  State<OpenSansPage> createState() => _OpenSansPageState();
+}
+
+class _OpenSansPageState extends State<OpenSansPage> {
+  bool useGithubFont = false;
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = TextStyle(
+      fontFamily: useGithubFont ? 'OpenSansGithub' : 'OpenSansGoogleFonts',
+      fontSize: 24,
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(
-          'Open­-Sans­-Text­-Page',
-          style: TextStyle(
-            fontFamily: 'OpenSansGoogle',
-            fontWeight: FontWeight.bold,
-          ),
+        title: Text(
+          'Open Sans Issue #2460',
+          style: textStyle.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Text(
-            'Open Sans is an open source humanist sans-serif typeface that was designed by Steve Matteson under '
-            'commission from Google. It was released in 2011 and is based on his earlier design called Droid Sans, '
-            'which was specifically created for Android mobile devices but with slight modifications to its width.'
-            ''
-            'The typeface is characterized by its wide apertures on many letters and a large x-height, making it '
-            'highly legible on screens and at small sizes. Being part of the humanist genre of sans-serif typefaces, '
-            'it also features a true italic style. As of July 2018, Open Sans is the second most widely used font on '
-            'Google Fonts, serving over four billion views per day across more than 20 million websites.'
-            ''
-            'In March 2021, the Open Sans font family was updated to include a variable font version, which now also '
-            'supports Hebrew characters.',
-            style: TextStyle(
-              fontFamily: 'OpenSansGoogle',
-              fontSize: 20,
-            ),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Use GitHub Font: ',
+                style: textStyle,
+              ),
+              Switch(
+                value: useGithubFont,
+                onChanged: (value) {
+                  setState(() {
+                    useGithubFont = value;
+                  });
+                },
+              ),
+            ],
           ),
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+          Text('U+2010: ‐', style: textStyle),
+          Text('U+002D: -', style: textStyle),
+        ],
+      ),
     );
   }
 }
